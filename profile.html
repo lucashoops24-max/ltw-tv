@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile | LTW TV</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>👤 Profile</h1></header>
+
+<div class="container">
+
+  <div class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="worship.html">Worship</a>
+    <a href="kids.html">Kids</a>
+    <a href="profile.html">Profile</a>
+  </div>
+
+  <div class="main">
+    <input id="name">
+    <button onclick="save()">Save</button>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+name.value = user.name;
+function save() {
+  user.name = name.value;
+  localStorage.setItem("user", JSON.stringify(user));
+}
+</script>
+
+</body>
+</html>
 
