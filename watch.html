@@ -1,61 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Watch | LTW TV</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header><h1>▶ Watch</h1></header>
-
-<div class="container">
-
-  <div class="sidebar">
-    <a href="index.html">Home</a>
-    <a href="sermons.html">Sermons</a>
-    <a href="worship.html">Worship</a>
-    <a href="kids.html">Kids</a>
-    <a href="profile.html">Profile</a>
-  </div>
-
-  <div class="main" id="watch"></div>
-
-</div>
-
 <script src="app.js"></script>
 <script>
-const id = new URLSearchParams(location.search).get("id");
+const params = new URLSearchParams(location.search);
+const id = params.get("id");
+
 const videos = getVideos();
-const v = videos[id];
 
-document.getElementById("watch").innerHTML = `
-<h2>${v.title}</h2>
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/${v.youtube}"
-allowfullscreen></iframe>
+if (!id || !videos[id]) {
+  document.getElementById("watch").innerHTML =
+    "<p>Video not found.</p>";
+} else {
+  const v = videos[id];
 
-<p>👍 ${v.likes} | 👎 ${v.dislikes}</p>
+  document.getElementById("watch").innerHTML = `
+    <h2>${v.title}</h2>
+    <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/${v.youtube}"
+    allowfullscreen></iframe>
 
-<button onclick="v.likes++;save()">Like</button>
-<button onclick="v.dislikes++;save()">Dislike</button>
+    <p>👍 ${v.likes} | 👎 ${v.dislikes}</p>
 
-<h3>Comments</h3>
-<input id="c"><button onclick="comment()">Post</button>
-<div>${v.comments.join("<br>")}</div>
-`;
+    <button onclick="like()">Like</button>
+    <button onclick="dislike()">Dislike</button>
 
-function save() {
-  videos[id] = v;
-  saveVideos(videos);
-  location.reload();
-}
+    <h3>Comments</h3>
+    <input id="c">
+    <button onclick="comment()">Post</button>
+    <div>${v.comments.join("<br>")}</div>
+  `;
 
-function comment() {
-  v.comments.push(user.name + ": " + c.value);
-  save();
+  function like() {
+    v.likes++;
+    save();
+  }
+
+  function dislike() {
+    v.dislikes++;
+    save();
+  }
+
+  function comment() {
+    v.comments.push(user.name + ": " + c.value);
+    save();
+  }
+
+  function save() {
+    videos[id] = v;
+    saveVideos(videos);
+    location.reload();
+  }
 }
 </script>
-
-</body>
-</html>
-
