@@ -1,1 +1,46 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+
+header {
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.container {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+  background: white;
+  border-right: 1px solid #ddd;
+  padding: 15px;
+  height: calc(100vh - 60px);
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+
+/* MAIN CONTENT */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.video-card {
+  background: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
 
