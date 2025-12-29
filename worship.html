@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Worship | LTW TV</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>🎵 Worship</h1></header>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="worship.html">Worship</a>
+    <a href="kids.html">Kids</a>
+    <a href="profile.html">Profile</a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="videos"></div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+const vids = getVideos();
+for (let id in vids) {
+  if (vids[id].category === "worship") {
+    document.getElementById("videos").innerHTML += `
+      <div class="video-card"
+        onclick="location.href='watch.html?id=${id}'">
+        <strong>${vids[id].title}</strong>
+      </div>`;
+  }
+}
+</script>
+
+</body>
+</html>
 
